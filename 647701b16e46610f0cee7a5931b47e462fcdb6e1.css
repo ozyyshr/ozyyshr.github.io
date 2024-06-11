@@ -991,26 +991,6 @@ body.dark .layout-content-with-divider {
         outline-width: 5px
         }
     }
-@keyframes pulseBackgroundScaleLight {
-    0%, to {
-        outline: 2px solid rgba(35, 131, 226, .35)
-        } 50% {
-        outline-width: 6px
-        }
-    }
-@keyframes pulseBackgroundScaleDark {
-    0%, to {
-        outline: 2px solid rgba(35, 131, 226, .57)
-        } 50% {
-        outline-width: 8px
-        }
-    }
-.pulse-highlight-light {
-    animation: pulseBackgroundScaleLight 1s ease-in-out infinite
-    }
-.pulse-highlight-dark {
-    animation: pulseBackgroundScaleDark 1s ease-in-out infinite
-    }
 .in-page-find-selected-highlight-match {
     animation: selectedOutlineScale 0.15s ease-in-out
     }
@@ -1147,6 +1127,12 @@ body.dark .layout-content-with-divider {
     font-weight: 600;
     line-height: 150%
     }
+.tx-page-content-database {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%
+    }
 .tx-uititle-medium-20-semibold {
     font-size: 20px;
     font-style: normal;
@@ -1178,6 +1164,12 @@ body.dark .layout-content-with-divider {
     font-style: normal;
     font-weight: 700;
     line-height: 32px
+    }
+.tx-uimedium-13-semi {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 590;
+    line-height: 16px
     }
 .tx-uiheader-17-semi {
     font-size: 17px;
