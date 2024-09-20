@@ -932,6 +932,14 @@ body.dark .layout-content-with-divider {
     border-end-end-radius: 6px;
     border-end-start-radius: 6px
     }
+.automation-list-item-modal:first-child > * {
+    border-start-end-radius: 10px;
+    border-start-start-radius: 10px
+    }
+.automation-list-item-modal:last-child > * {
+    border-end-end-radius: 10px;
+    border-end-start-radius: 10px
+    }
 .automation-list-item-narrow + .automation-list-item-narrow {
     margin-block-start: -1px
     }
@@ -1222,6 +1230,12 @@ body.dark .layout-content-with-divider {
     }
 .tx-uismall-12-reg {
     font-weight: 400
+    }
+.tx-uismall-12-semi {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 590;
+    line-height: 16px
     }
 .radio-button:checked + span:after {
     opacity: 1
