@@ -254,7 +254,7 @@ td, th {
 .notion-token-remove-button:hover {
     opacity: 0.8
     }
-.notion-external-object-token.notion-enable-hover:hover, .notion-page-mention-token.notion-enable-hover:hover {
+.notion-external-object-token.notion-enable-hover:hover, .notion-link-mention-token.notion-enable-hover:hover, .notion-page-mention-token.notion-enable-hover:hover {
     border-radius: 1px;
     cursor: pointer !important
     }
@@ -340,7 +340,7 @@ html.notion-mobile:not(.notion-front-page) body:not(.notion-disable-webkit-user-
 html.notion-front-page, html.notion-front-page #notion-app, html.notion-front-page body {
     background: #fffefc;
     overflow-x: initial;
-    overflow-y: initial
+    overflow-y: auto
     }
 html.notion-front-page body.disable-scroll {
     overflow: hidden
@@ -348,7 +348,16 @@ html.notion-front-page body.disable-scroll {
 html.notion-front-page .notion-app-inner {
     height: auto
     }
-.form-question-title .pseudoAfter[contenteditable]:empty:before, [contenteditable]:empty:after {
+[contenteditable]:empty:after {
+    content: attr(placeholder)
+    }
+[contenteditable] .empty-content-editable-selection-target:before {
+    content: attr(placeholder);
+    left: 0;
+    position: absolute;
+    width: max-content
+    }
+.form-question-title .pseudoAfter[contenteditable]:empty:before {
     content: attr(placeholder)
     }
 #intercom-container {
@@ -388,17 +397,6 @@ html.notion-front-page .notion-app-inner {
         opacity: 1;
         transform: translateY(0)
         }
-    }
-.loading-spinner {
-    -webkit-animation: rotate 1s linear infinite;
-    animation: rotate 1s linear infinite;
-    display: block;
-    height: 1em;
-    opacity: 0.5;
-    pointer-events: none;
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
-    width: 1em
     }
 @-webkit-keyframes rotate {
     0% {
@@ -664,6 +662,17 @@ html.notion-front-page .notion-app-inner {
 .highcharts-legend-item > span {
     max-width: 200px
     }
+.notion-chart-clickable .highcharts-tooltip {
+    cursor: pointer !important
+    }
+.notion-chart-clickable .highcharts-crosshair {
+    cursor: pointer !important;
+    pointer-events: auto !important
+    }
+.notion-chart-clickable .highcharts-plot-background {
+    cursor: pointer !important;
+    pointer-events: all !important
+    }
 input[type=range] {
     -webkit-appearance: none
     }
@@ -849,6 +858,101 @@ input[type=number].input-hide-arrows {
 .autolayout-row.autolayout-space {
     justify-content: space-between
     }
+.automation-list-item {
+    min-width: 50px;
+    padding-bottom: 8px
+    }
+.automation-list-item .automation-list-item-base-step {
+    border-radius: 10px;
+    width: 100%
+    }
+.automation-list-item-drag-handle, .automation-list-item-icon {
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.1s ease
+    }
+.automation-list-item-icon {
+    opacity: 1
+    }
+.automation-list-item-drag-handle {
+    cursor: grab;
+    opacity: 0
+    }
+.automation-list-item-base-step:not(.automation-list-item-base-step--drag-disabled):hover .automation-list-item-icon {
+    opacity: 0
+    }
+.automation-list-item-base-step:not(.automation-list-item-base-step--drag-disabled):hover .automation-list-item-drag-handle {
+    opacity: 1
+    }
+.automation-list-item-drag-handle:active {
+    cursor: grabbing
+    }
+.app-builder-notification-activity--dark a {
+    color: hsla(0, 0%, 100%, 0.445)
+    }
+@keyframes selectedOutlineScale {
+    0%, to {
+        outline: 2px solid #ffcd38
+        } 50% {
+        outline-width: 5px
+        }
+    }
+.in-page-find-selected-highlight-match {
+    animation: selectedOutlineScale 0.15s ease-in-out
+    }
+.temporary-dictation-annotation {
+    opacity: 0.3
+    }
+.marketplace-checkout-email-element {
+    pointer-events: none
+    }
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-4px)
+        } to {
+        opacity: 1;
+        transform: translateX(0)
+        }
+    }
+@keyframes template-preview-column-focus-in {
+    0% {
+        filter: blur(6px);
+        opacity: 0
+        } to {
+        filter: blur(0);
+        opacity: 1
+        }
+    }
+@keyframes template-preview-column-focus-out {
+    0% {
+        filter: blur(.01);
+        opacity: 1
+        } to {
+        filter: blur(6px);
+        min-width: 0;
+        opacity: 0
+        }
+    }
+.quickActionContainer:empty {
+    visibility: hidden
+    }
+.popup-origin-wrapper:has(svg) > * {
+    transform: translatez(0)
+    }
+@property - -shimmer-text-faded-color {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #0f0
+    }
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+        } to {
+        transform: rotate(1turn)
+        }
+    }
 .layout {
     display: grid;
     width: 100%
@@ -858,6 +962,12 @@ input[type=number].input-hide-arrows {
     }
 .layout.layout-center-peek-with-layout-panel {
     transition: grid-template-columns 0.2s ease-in-out
+    }
+.layout.layout-fullscreen-ai {
+    max-height: 100%
+    }
+.layout.layout-narrowscreen-ai {
+    max-height: 100%
     }
 .home-content:before {
     content: " ";
@@ -911,85 +1021,6 @@ body.dark .layout-content-with-divider {
 .layout-editor {
     padding-top: 5px
     }
-.automation-list-item {
-    min-width: 50px
-    }
-.automation-list-item > * {
-    border-radius: 6px;
-    width: 100%
-    }
-.automation-list-item:not(.automation-list-item-narrow) {
-    padding-bottom: 8px
-    }
-.automation-list-item-narrow > * {
-    border-radius: 0
-    }
-.automation-list-item-narrow:first-child > * {
-    border-start-end-radius: 6px;
-    border-start-start-radius: 6px
-    }
-.automation-list-item-narrow:last-child > * {
-    border-end-end-radius: 6px;
-    border-end-start-radius: 6px
-    }
-.automation-list-item-modal:first-child > * {
-    border-start-end-radius: 10px;
-    border-start-start-radius: 10px
-    }
-.automation-list-item-modal:last-child > * {
-    border-end-end-radius: 10px;
-    border-end-start-radius: 10px
-    }
-.automation-list-item-narrow + .automation-list-item-narrow {
-    margin-block-start: -1px
-    }
-.automation-list-item-drag-handle, .automation-list-item-icon {
-    left: 0;
-    position: absolute;
-    top: 0;
-    transition: opacity 0.1s ease
-    }
-.automation-list-item-icon {
-    opacity: 1
-    }
-.automation-list-item-drag-handle {
-    cursor: grab;
-    opacity: 0
-    }
-.automation-list-item-base-step:not(.automation-list-item-base-step--disabled):hover .automation-list-item-icon {
-    opacity: 0
-    }
-.automation-list-item-base-step:not(.automation-list-item-base-step--disabled):hover .automation-list-item-drag-handle {
-    opacity: 1
-    }
-.automation-list-item-drag-handle:active {
-    cursor: grabbing
-    }
-@keyframes selectedOutlineScale {
-    0%, to {
-        outline: 2px solid #ffcd38
-        } 50% {
-        outline-width: 5px
-        }
-    }
-.in-page-find-selected-highlight-match {
-    animation: selectedOutlineScale 0.15s ease-in-out
-    }
-.temporary-dictation-annotation {
-    opacity: 0.3
-    }
-@keyframes slideInFromLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-4px)
-        } to {
-        opacity: 1;
-        transform: translateX(0)
-        }
-    }
-.quickActionContainer:empty {
-    visibility: hidden
-    }
 .tx-agate-10-regular {
     font-weight: 400
     }
@@ -999,7 +1030,7 @@ body.dark .layout-content-with-divider {
     line-height: 13px
     }
 .tx-agate-10-medium {
-    font-weight: 510
+    font-weight: 500
     }
 .tx-body-12-med {
     font-size: 12px;
@@ -1012,7 +1043,7 @@ body.dark .layout-content-with-divider {
     }
 .tx-body-13-med {
     font-size: 13px;
-    font-weight: 510;
+    font-weight: 500;
     line-height: 16px
     }
 .tx-body-13-reg {
@@ -1027,13 +1058,13 @@ body.dark .layout-content-with-divider {
     }
 .tx-body-14-med {
     font-size: 14px;
-    font-weight: 510;
+    font-weight: 500;
     line-height: 18px
     }
 .tx-body-14-reg {
     font-size: 14px;
     font-weight: 400;
-    line-height: 18px
+    line-height: 20px
     }
 .tx-body-14-semi {
     font-size: 14px;
@@ -1090,21 +1121,38 @@ body.dark .layout-content-with-divider {
     font-weight: 400;
     line-height: 21px
     }
+.tx-ios-footnote-13-reg {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.08px;
+    line-height: 18px
+    }
 .tx-ios-caption-12-reg {
     font-size: 12px;
     font-weight: 400;
     line-height: 16px
     }
+.tx-ios-subhead-15-reg {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.24px;
+    line-height: 20px
+    }
 .tx-ios-subhead-15-med-c {
     font-size: 15px;
-    font-weight: 510;
+    font-weight: 500;
     letter-spacing: -0.24px;
     line-height: normal
     }
-.tx-ios-title-3-bold {
+.tx-ios-title-3-semibold {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 590;
     line-height: 25px
+    }
+.tx-page-content-h2 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 31.2px
     }
 .tx-page-content-h3 {
     font-size: 20px;
@@ -1156,6 +1204,13 @@ body.dark .layout-content-with-divider {
     letter-spacing: 0.208px;
     line-height: 28px
     }
+.tx-title-24-semi {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 590;
+    letter-spacing: 0.21px;
+    line-height: 32px
+    }
 .tx-title-26-bold {
     font-size: 26px;
     font-style: normal;
@@ -1163,33 +1218,50 @@ body.dark .layout-content-with-divider {
     line-height: 32px
     }
 .tx-uimini-10-semi {
+    font-weight: 590
+    }
+.tx-uimini-10-reg, .tx-uimini-10-semi {
     font-size: 10px;
     font-style: normal;
-    font-weight: 590;
     letter-spacing: 0.12px;
     line-height: 13px
+    }
+.tx-uimini-10-reg {
+    font-weight: 400
     }
 .tx-uimedium-13-reg {
     font-weight: 400
     }
-.tx-uimedium-13-reg, .tx-uimedium-13-semi {
+.tx-uimedium-13-med, .tx-uimedium-13-reg {
     font-size: 13px;
     font-style: normal;
     line-height: 16px
     }
+.tx-uimedium-13-med {
+    font-weight: 500
+    }
 .tx-uimedium-13-semi {
-    font-weight: 590
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 590;
+    line-height: 16px
     }
-.tx-uiheader-17-semi {
-    font-weight: 590
+.tx-uiheading-17-reg {
+    font-weight: 400
     }
-.tx-uiheader-17-med, .tx-uiheader-17-semi {
+.tx-uiheading-17-reg, .tx-uiheading-17-semi {
     font-size: 17px;
     font-style: normal;
     line-height: 22px
     }
-.tx-uiheader-17-med {
-    font-weight: 510
+.tx-uiheading-17-semi {
+    font-weight: 590
+    }
+.tx-uiheading-17-med {
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px
     }
 .tx-uititle-26-bold {
     font-size: 26px;
@@ -1209,7 +1281,7 @@ body.dark .layout-content-with-divider {
 .tx-uiregular-14-med, .tx-uiregular-14-reg {
     font-size: 14px;
     font-style: normal;
-    line-height: 18px
+    line-height: 20px
     }
 .tx-uiregular-14-reg {
     font-weight: 400
@@ -1218,7 +1290,7 @@ body.dark .layout-content-with-divider {
     font-size: 14px;
     font-style: normal;
     font-weight: 590;
-    line-height: 18px
+    line-height: 20px
     }
 .tx-uismall-12-med {
     font-weight: 500
@@ -1402,7 +1474,11 @@ td.rdtMonth:hover, td.rdtYear:hover {
     outline: 0
     }
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
+    isolation: isolate
+    }
+foreignObject * {
+    isolation: auto
     }
 table > tr {
     vertical-align: top
@@ -1435,6 +1511,11 @@ table > tr {
     }
 [contenteditable] {
     -webkit-tap-highlight-color: transparent
+    }
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0
     }
 @keyframes pulse-ring {
     0% {
@@ -1504,11 +1585,24 @@ table > tr {
         transform: translatey(0)
         }
     }
+@keyframes slide-up-small {
+    0% {
+        transform: translateY(5px)
+        } to {
+        transform: translateY(0)
+        }
+    }
 .home-tile-fade-up-in {
     animation-duration: 1.5s;
     animation-fill-mode: both;
     animation-name: home-tile-slide-up, fadeIn;
     animation-timing-function: ease-in-out
+    }
+.slide-up-small {
+    animation-duration: 0.75s;
+    animation-fill-mode: both;
+    animation-name: slide-up-small;
+    animation-timing-function: cubic-bezier(0.02, 1.2, 0.2, 0.92)
     }
 .front-fadein-slow {
     animation: fadein 0.5s ease-in
@@ -1666,7 +1760,7 @@ table > tr {
     color: #f5b83d
     }
 .notion-dark-theme .token.atrule, .notion-dark-theme .token.attr-value, .notion-dark-theme .token.keyword {
-    color: #d1949e
+    color: #66a2cc
     }
 .notion-dark-theme .token.important, .notion-dark-theme .token.regex {
     color: #e90
@@ -1682,6 +1776,9 @@ table > tr {
     }
 .notion-dark-theme .token.deleted {
     color: red
+    }
+.notion-dark-theme .token.class-name, .notion-dark-theme .token.function {
+    color: #ecec93
     }
 .notion-gist-block .gist-data {
     display: flex
