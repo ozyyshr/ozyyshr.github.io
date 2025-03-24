@@ -25,7 +25,7 @@ jobs:
       - name: Install Loconotion dependencies
         run: pip install -r loconotion/requirements.txt
       - name: Reinstall urllib3
-        run: pip install requests --upgrade && pip install urllib3 --upgrade && pip install --upgrade six
+        run: pip install requests --upgrade && pip install selenium==3.141.0 && pip install --upgrade urllib3==1.26.16 && pip install --upgrade six
       - name: Run Loconotion
         run: |
           python3 loconotion/loconotion --chromedriver chromedriver "pages_repo/site.toml"
