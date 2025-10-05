@@ -2,25 +2,29 @@
     font-family: Lyon-Text;
     font-style: normal;
     font-weight: 400;
-    src: url(lyon-text-regular-3be84b20b1d9ff1e3456b0a220ae449b.woff)
+    src: url(lyon-text-regular-3be84b20b1d9ff1e3456b0a220ae449b.woff);
+    unicode-range: u+0000-001f, u+0021-00ff, u+0100-017f, u+0180-024f, u+02c6-02dd, u+1e??, u+2000-206f, u+20a0-20cf, u+2100-214f, u+2150-218f, u+22??, u+24c0-24ff, u+fb00-fb4f
     }
 @font-face {
     font-family: Lyon-Text;
     font-style: italic;
     font-weight: 400;
-    src: url(lyon-text-regular-italic-437d32a42fc5b8268bb4a1e0cc8b363f.woff)
+    src: url(lyon-text-regular-italic-437d32a42fc5b8268bb4a1e0cc8b363f.woff);
+    unicode-range: u+0000-001f, u+0021-00ff, u+0100-017f, u+0180-024f, u+02c6-02dd, u+1e??, u+2000-206f, u+20a0-20cf, u+2100-214f, u+2150-218f, u+22??, u+24c0-24ff, u+fb00-fb4f
     }
 @font-face {
     font-family: Lyon-Text;
     font-style: normal;
     font-weight: 600;
-    src: url(lyon-text-semibold-acb7f110189034ff6a1afa4b730be0ed.woff)
+    src: url(lyon-text-semibold-acb7f110189034ff6a1afa4b730be0ed.woff);
+    unicode-range: u+0000-001f, u+0021-00ff, u+0100-017f, u+0180-024f, u+02c6-02dd, u+1e??, u+2000-206f, u+20a0-20cf, u+2100-214f, u+2150-218f, u+22??, u+24c0-24ff, u+fb00-fb4f
     }
 @font-face {
     font-family: Lyon-Text;
     font-style: italic;
     font-weight: 600;
-    src: url(lyon-text-semibold-italic-1f81a2f93060f05edd7f078ac91f25e6.woff)
+    src: url(lyon-text-semibold-italic-1f81a2f93060f05edd7f078ac91f25e6.woff);
+    unicode-range: u+0000-001f, u+0021-00ff, u+0100-017f, u+0180-024f, u+02c6-02dd, u+1e??, u+2000-206f, u+20a0-20cf, u+2100-214f, u+2150-218f, u+22??, u+24c0-24ff, u+fb00-fb4f
     }
 @font-face {
     font-family: iawriter-mono;
@@ -267,7 +271,7 @@ td, th {
 .notion-token-remove-button:hover {
     opacity: 0.8
     }
-.notion-external-object-token.notion-enable-hover:hover, .notion-link-mention-token.notion-enable-hover:hover, .notion-page-mention-token.notion-enable-hover:hover, .notion-team-mention-token.notion-enable-hover:hover {
+.notion-collection-mention-token.notion-enable-hover:hover, .notion-external-object-token.notion-enable-hover:hover, .notion-link-mention-token.notion-enable-hover:hover, .notion-page-mention-token.notion-enable-hover:hover, .notion-team-mention-token.notion-enable-hover:hover {
     border-radius: 1px;
     cursor: pointer !important
     }
@@ -463,8 +467,8 @@ html.notion-front-page .notion-app-inner {
         }
     }
 .sync-spinner {
-    -webkit-animation: rotate 2.5s linear infinite;
-    animation: rotate 2.5s linear infinite;
+    -webkit-animation: rotate 2.5s linear infinite reverse;
+    animation: rotate 2.5s linear infinite reverse;
     display: block;
     pointer-events: none;
     -webkit-transform-origin: center center;
@@ -700,6 +704,16 @@ html.notion-front-page .notion-app-inner {
 .notion-chart-clickable .highcharts-plot-background {
     cursor: pointer !important;
     pointer-events: all !important
+    }
+.notion-home-shortcuts-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, 1fr)
+    }
+@media only screen and (max-width: 768px) {
+    .notion-home-shortcuts-grid {
+        grid-template-columns: repeat(2, 1fr)
+        }
     }
 input[type=range] {
     -webkit-appearance: none
@@ -1031,6 +1045,20 @@ html[dir=rtl] .directional-icon {
 .tr-with-border-radius > td:last-child {
     border-radius: 0 12px 12px 0
     }
+::spelling-error {
+    text-decoration-color: #e56458;
+    text-decoration-line: underline;
+    text-decoration-skip-ink: none;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px
+    }
+.content-editable-leaf-rtl {
+    unicode-bidi: plaintext
+    }
+.notion-table-cell .content-editable-leaf-rtl {
+    unicode-bidi: inherit
+    }
 .layout {
     display: grid;
     width: 100%
@@ -1088,280 +1116,6 @@ body.dark .layout-content-with-divider {
     }
 .layout-editor {
     padding-top: 5px
-    }
-.tx-agate-10-regular {
-    font-weight: 400
-    }
-.tx-agate-10-medium, .tx-agate-10-regular {
-    font-size: 10px;
-    letter-spacing: 0.12px;
-    line-height: 13px
-    }
-.tx-agate-10-medium {
-    font-weight: 500
-    }
-.tx-body-12-med {
-    font-size: 12px;
-    font-weight: 500
-    }
-.tx-body-12-reg {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px
-    }
-.tx-body-13-med {
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 16px
-    }
-.tx-body-13-reg {
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 16px
-    }
-.tx-body-13-semi {
-    font-size: 13px;
-    font-weight: 590;
-    line-height: 16px
-    }
-.tx-body-14-med {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 18px
-    }
-.tx-body-14-reg {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px
-    }
-.tx-body-14-semi {
-    font-size: 14px;
-    font-weight: 590;
-    line-height: 18px
-    }
-.tx-caption-12-reg {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px
-    }
-.tx-caption-12-med {
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 16px
-    }
-.tx-caption-12-semi {
-    font-size: 12px;
-    font-weight: 590;
-    line-height: 15px
-    }
-.tx-micro-10-med {
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 13px
-    }
-.tx-micro-10-reg {
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 13px
-    }
-.tx-micro-10-semi {
-    font-size: 10px;
-    font-weight: 590;
-    line-height: 13px
-    }
-.tx-ios-callout-16-reg {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 21px
-    }
-.tx-ios-footnote-13-reg {
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 18px
-    }
-.tx-ios-caption-12-reg {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px
-    }
-.tx-ios-subhead-15-reg {
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 20px
-    }
-.tx-ios-subhead-15-med-c {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: normal
-    }
-.tx-ios-title-3-semibold {
-    font-size: 20px;
-    font-weight: 590;
-    line-height: 25px
-    }
-.tx-page-content-h2 {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 31.2px
-    }
-.tx-page-content-h3 {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 150%
-    }
-.tx-page-content-database {
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%
-    }
-.tx-page-content-text-block {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%
-    }
-.tx-uititle-medium-20-semibold {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 590;
-    line-height: 25px
-    }
-.tx-uititle-22-semibold {
-    font-weight: 590
-    }
-.tx-title-22-bold, .tx-uititle-22-semibold {
-    font-size: 22px;
-    font-style: normal;
-    line-height: 26px
-    }
-.tx-title-22-bold {
-    font-weight: 700
-    }
-.tx-title-22-semi {
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 590;
-    line-height: 26px
-    }
-.tx-title-24-bold {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 0.208px;
-    line-height: 28px
-    }
-.tx-title-24-semi {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 590;
-    letter-spacing: 0.21px;
-    line-height: 32px
-    }
-.tx-title-26-bold {
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 32px
-    }
-.tx-uimini-10-semi {
-    font-weight: 590
-    }
-.tx-uimini-10-med, .tx-uimini-10-semi {
-    font-size: 10px;
-    font-style: normal;
-    letter-spacing: 0.12px;
-    line-height: 13px
-    }
-.tx-uimini-10-med {
-    font-weight: 500
-    }
-.tx-uimini-10-reg {
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 0.12px;
-    line-height: 13px
-    }
-.tx-uimedium-13-reg {
-    font-weight: 400
-    }
-.tx-uimedium-13-med, .tx-uimedium-13-reg {
-    font-size: 13px;
-    font-style: normal;
-    line-height: 18px
-    }
-.tx-uimedium-13-med {
-    font-weight: 500
-    }
-.tx-uimedium-13-semi {
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 590;
-    line-height: 18px
-    }
-.tx-uiheading-17-reg {
-    font-weight: 400
-    }
-.tx-uiheading-17-reg, .tx-uiheading-17-semi {
-    font-size: 17px;
-    font-style: normal;
-    line-height: 22px
-    }
-.tx-uiheading-17-semi {
-    font-weight: 590
-    }
-.tx-uiheading-17-med {
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 22px
-    }
-.tx-uititle-26-bold {
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 32px
-    }
-.tx-uititle-30-semibold {
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 36px
-    }
-.tx-uiregular-14-med {
-    font-weight: 500
-    }
-.tx-uiregular-14-med, .tx-uiregular-14-reg {
-    font-size: 14px;
-    font-style: normal;
-    line-height: 20px
-    }
-.tx-uiregular-14-reg {
-    font-weight: 400
-    }
-.tx-uiregular-14-semi {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 590;
-    line-height: 20px
-    }
-.tx-uismall-12-med {
-    font-weight: 500
-    }
-.tx-uismall-12-med, .tx-uismall-12-reg {
-    font-size: 12px;
-    font-style: normal;
-    line-height: 15px
-    }
-.tx-uismall-12-reg {
-    font-weight: 400
-    }
-.tx-uismall-12-semi {
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 590;
-    line-height: 16px
     }
 .radio-button:checked + span:after {
     opacity: 1
@@ -1614,17 +1368,6 @@ fieldset {
         filter: brightness(1)
         }
     }
-@keyframes ai-chat-upsell-focus-ring-pulse {
-    0% {
-        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 1px #2383e240
-        } 50% {
-        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 2.5px #2383e240
-        } 75% {
-        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 1px #2383e240
-        } to {
-        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d
-        }
-    }
 @keyframes shake {
     0% {
         margin-left: 0
@@ -1689,6 +1432,34 @@ fieldset {
 .home-tile-fade-out {
     animation: partialFadeOut 0.5s ease-in-out;
     opacity: 0.5
+    }
+@keyframes pulse-a {
+    0% {
+        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 1px #2383e240
+        } 50% {
+        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 2.5px #2383e240
+        } 75% {
+        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 1px #2383e240
+        } to {
+        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d
+        }
+    }
+@keyframes pulse-b {
+    0% {
+        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 1px #2383e240
+        } 50% {
+        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 2.5px #2383e240
+        } 75% {
+        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d, inset 0 0 0 1px #2383e240
+        } to {
+        box-shadow: 0 12px 32px #00000008, 0 0 0 1px #0000000d
+        }
+    }
+.notion-pulse-a {
+    animation: pulse-a 1.2s ease-in-out 1
+    }
+.notion-pulse-b {
+    animation: pulse-b 1.2s ease-in-out 1
     }
 .front-fadein-slow {
     animation: fadein 0.5s ease-in
@@ -1873,3 +1644,6 @@ fieldset {
     display: flex;
     flex-direction: column
     }
+/*! tailwindcss v4.1.12 | MIT License | https://tailwindcss.com */
+@layer theme, base, components, utilities;
+@layer utilities;
