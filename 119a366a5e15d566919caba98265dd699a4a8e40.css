@@ -27,6 +27,24 @@
     unicode-range: u+0000-001f, u+0021-00ff, u+0100-017f, u+0180-024f, u+02c6-02dd, u+1e??, u+2000-206f, u+20a0-20cf, u+2100-214f, u+2150-218f, u+22??, u+24c0-24ff, u+fb00-fb4f
     }
 @font-face {
+    font-display: swap;
+    font-family: Noto Sans Arabic;
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 100 900;
+    src: url(noto-sans-arabic-593878768b809251b8aea93f1831e86c.woff2);
+    unicode-range: u+06??, u+0750-077f, u+0870-088e, u+0890-0891, u+0897-08e1, u+08e3-08ff, u+200c-200e, u+2010-2011, u+204f, u+2e41, u+fb50-fdff, u+fe70-fe74, u+fe76-fefc, u+102e0-102fb, u+10e60-10e7e, u+10ec2-10ec4, u+10efc-10eff, u+1ee00-1ee03, u+1ee05-1ee1f, u+1ee21-1ee22, u+1ee24, u+1ee27, u+1ee29-1ee32, u+1ee34-1ee37, u+1ee39, u+1ee3b, u+1ee42, u+1ee47, u+1ee49, u+1ee4b, u+1ee4d-1ee4f, u+1ee51-1ee52, u+1ee54, u+1ee57, u+1ee59, u+1ee5b, u+1ee5d, u+1ee5f, u+1ee61-1ee62, u+1ee64, u+1ee67-1ee6a, u+1ee6c-1ee72, u+1ee74-1ee77, u+1ee79-1ee7c, u+1ee7e, u+1ee80-1ee89, u+1ee8b-1ee9b, u+1eea1-1eea3, u+1eea5-1eea9, u+1eeab-1eebb, u+1eef0-1eef1
+    }
+@font-face {
+    font-display: swap;
+    font-family: Noto Sans Hebrew;
+    font-stretch: 100%;
+    font-style: normal;
+    font-weight: 100 900;
+    src: url(noto-sans-hebrew-d6b47ab839699c763b27a6a9bc6bc193.woff2);
+    unicode-range: u+0307-0308, u+0590-05ff, u+200c-2010, u+20aa, u+25cc, u+fb1d-fb4f
+    }
+@font-face {
     font-family: iawriter-mono;
     font-style: normal;
     font-weight: 400;
@@ -230,6 +248,14 @@ table {
 td, th {
     padding: 0
     }
+.notion-light-theme, :root {
+    color-scheme: light
+    }
+@media screen {
+    .notion-dark-theme {
+        color-scheme: dark
+        }
+    }
 .notion-inline-code-container.notion-inline-code-strikethrough > span {
     text-decoration: line-through;
     text-decoration-color: inherit;
@@ -300,6 +326,12 @@ td, th {
     }
 .notion-focusable-within:focus-within {
     box-shadow: inset 0 0 0 1px #2383e2, 0 0 0 1px #2383e2 !important
+    }
+.notion-focusable-token:focus-visible {
+    border-radius: 3px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    outline: none
     }
 .notion-cursor-default {
     cursor: default
@@ -462,7 +494,6 @@ html.notion-front-page .notion-app-inner {
     animation-iteration-count: infinite;
     animation-name: dotdance;
     animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
-    background-color: #a782c3;
     border-radius: 100%;
     height: 4px;
     width: 4px
@@ -1094,7 +1125,7 @@ html[dir=rtl] .directional-icon {
 .agent-title-input::placeholder {
     opacity: 1
     }
-@keyframes ai-face-pulse {
+@keyframes pulse-opacity {
     0% {
         opacity: .3
         } 50% {
@@ -1103,8 +1134,13 @@ html[dir=rtl] .directional-icon {
         opacity: .3
         }
     }
-.ai-face-pulse {
-    animation: ai-face-pulse 2s cubic-bezier(0.45, 0, 0.55, 1) infinite
+.pulse-opacity {
+    animation: pulse-opacity 1.8s linear infinite
+    }
+@media print {
+    .notion-ai-button {
+        display: none !important
+        }
     }
 .layout {
     display: grid;
